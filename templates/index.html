@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WageWise</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="static/header-img2.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .dark {
+            background-color: #1a202c;
+            color: #f7fafc;
+        }
+        
+        .dark .card {
+            background-color: #2d3748;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark input, .dark select {
+            background-color: #4a5568;
+            color: #f7fafc;
+            border-color: #4a5568;
+        }
+        
+        .dark .mode-toggle {
+            background-color: #4a5568;
+        }
+        
+        .dark .result-card {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            
+        }
+
+
+    </style>
+</head>
+<body class="min-h-screen bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                        <div class="relative float">
+                            <img class="w-6" src="static/header-img2.jpg" alt="Salary prediction illustration">
+                        </div>
+                    <div class="text-2xl font-bold gradient-text animate__animated animate__fadeIn">WageWise</div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="modeToggle" class="mode-toggle p-2 rounded-full focus:outline-none transition-colors duration-300">
+                        <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-200 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
+                <div class="animate__animated animate__fadeInLeft">
+                    <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl mb-6">
+                        <span class="gradient-text">Predict Your</span>
+                        <span class="block">Future Salary</span>                    </h1>
+                        <h2>
+                        <span class="block">                        <p>
+                        Our advanced AI model analyzes multiple factors to provide accurate salary predictions based on your profile.
+                        </p></span></h2>
+
+                    <div class="mt-8 flex">
+                        <button onclick="scrollToForm()" class="px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10 transform transition hover:scale-105 shadow-lg animate__animated animate__pulse animate__infinite">
+                            Try It Now
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-12 lg:mt-0 animate__animated animate__fadeInRight">
+                    <div class="relative mx-auto w-full max-w-lg">
+                        <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                        <div class="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+                        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+                        <div class="relative float">
+                            <img class="w-1/2 mx-auto" src="static/header-img2.jpg" alt="Salary prediction illustration">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prediction Form -->
+    <div class="relative" id="predictionSection">
+  <video class="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none" autoplay muted loop playsinline>
+      <source src="/static/bg-video1.mp4" type="video/mp4">
+  </video>
+
+    <div id="predictionForm" class="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        <div class="card bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden animate__animated animate__fadeInUp">
+            <div class="p-6 sm:p-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-extrabold gradient-text">Salary Prediction Form</h2>
+                    <p class="mt-2 text-gray-500 dark:text-gray-300">Fill in your details to get an accurate salary prediction</p>
+                </div>
+                
+                <form id="salaryForm" class="space-y-6">
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                        <!-- Age -->
+                        <div>
+                            <label for="age" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Age</label>
+                            <input type="number" id="age" name="age" min="18" max="70" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" required>
+                        </div>
+                        
+                        <!-- Gender -->
+                        <div>
+                            <label for="gender" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Gender</label>
+                            <select id="gender" name="gender" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                        <!-- Education Level -->
+                        <div>
+                            <label for="education" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Education Level</label>
+                            <select id="education" name="education" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" required>
+                                <option value="">Select Education Level</option>
+                                <option value="high_school">High School</option>
+                                <option value="bachelor">Bachelor's Degree</option>
+                                <option value="master">Master's Degree</option>
+                                <option value="phd">PhD</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Job Title -->
+                        <div>
+                            <label for="jobTitle" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Job Title</label>
+                            <select id="jobTitle" name="jobTitle" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" required>
+                                <option value="">Select Job Title</option>
+                                <option value="">Loading…</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Years of Experience -->
+                    <div>
+                        <label for="experience" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Years of Experience</label>
+                        <input type="number" id="experience" name="experience" min="0" max="50" step="0.5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" required>
+                    </div>
+                    
+                    <div class="flex justify-center pt-4">
+                        <button type="submit" class="px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 md:py-4 md:text-lg md:px-10 transform transition hover:scale-105 shadow-lg flex items-center">
+                            <svg id="spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Predict My Salary
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Results Section (Initially Hidden) -->
+    <div id="resultsSection" class="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8 hidden animate__animated animate__fadeIn">
+          <video class="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none" autoplay muted loop playsinline>
+      <source src="/static/bg-video1.mp4" type="video/mp4">
+  </video>
+        <div class="result-card bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl shadow-xl overflow-hidden text-white">
+            <div class="p-8">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="mb-6 md:mb-0">
+                        <h2 class="text-2xl font-bold">Your Salary Prediction</h2>
+                        <p class="opacity-90">Based on your profile details</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button onclick="resetForm()" class="px-4 py-2 bg-white text-indigo-600 rounded-md font-medium hover:bg-gray-100 transition">
+                            Predict Again
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="text-5xl font-bold mb-2">$<span id="predictedSalary">0</span></div>
+                        <div class="text-sm opacity-80 mb-6">Estimated Annual Salary</div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>Prediction Confidence</span>
+                                    <span id="confidenceValue">0%</span>
+                                </div>
+                                <div class="w-full bg-white bg-opacity-20 rounded-full h-2.5">
+                                    <div id="confidenceBar" class="bg-white h-2.5 rounded-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-300" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm">AI-powered prediction</span>
+                            </div>
+                            
+                            <div class="flex items-center space-x-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-300" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm">Industry benchmarked</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <div class="relative w-48 h-48">
+                            <svg class="w-full h-full" viewBox="0 0 100 100">
+                                <!-- Background circle -->
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#ffffff20" stroke-width="8" />
+                                <!-- Progress circle -->
+                                <circle id="progressCircle" cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" />
+                                <!-- Center text -->
+                                <text id="scoreText" x="50" y="50" font-size="20" fill="white" text-anchor="middle" dominant-baseline="middle">0%</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-white border-opacity-20">
+                    <h3 class="text-lg font-semibold mb-4">Your Profile Summary</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="bg-white bg-opacity-10 p-3 rounded-lg">
+                            <div class="text-xs opacity-80">Age</div>
+                            <div class="font-medium" id="summaryAge">--</div>
+                        </div>
+                        <div class="bg-white bg-opacity-10 p-3 rounded-lg">
+                            <div class="text-xs opacity-80">Gender</div>
+                            <div class="font-medium" id="summaryGender">--</div>
+                        </div>
+                        <div class="bg-white bg-opacity-10 p-3 rounded-lg">
+                            <div class="text-xs opacity-80">Education</div>
+                            <div class="font-medium" id="summaryEducation">--</div>
+                        </div>
+                        <div class="bg-white bg-opacity-10 p-3 rounded-lg">
+                            <div class="text-xs opacity-80">Job Title</div>
+                            <div class="font-medium" id="summaryJob">--</div>
+                        </div>
+                        <div class="bg-white bg-opacity-10 p-3 rounded-lg">
+                            <div class="text-xs opacity-80">Experience</div>
+                            <div class="font-medium" id="summaryExperience">--</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="bg-white dark:bg-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold gradient-text">How It Works</h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-300 mx-auto">
+                    Our salary prediction model analyzes multiple factors to provide accurate estimates.
+                </p>
+            </div>
+            
+            <div class="mt-10">
+                <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                    <!-- Feature 1 -->
+                    <div class="card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 transform transition hover:scale-105">
+                        <div class="p-6">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">Advanced AI Model</h3>
+                            <p class="text-gray-500 dark:text-gray-300">
+                                Our model is trained on thousands of data points to provide the most accurate salary predictions.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 transform transition hover:scale-105">
+                        <div class="p-6">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">Multiple Factors</h3>
+                            <p class="text-gray-500 dark:text-gray-300">
+                                We consider age, gender, education, job title, and experience to calculate your salary.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 transform transition hover:scale-105">
+                        <div class="p-6">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-pink-500 text-white mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">Real-time Analysis</h3>
+                            <p class="text-gray-500 dark:text-gray-300">
+                                Get instant results with our real-time processing and analysis.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="text-2xl font-bold gradient-text">SalaryPredict Pro</div>
+                    <p class="mt-2 text-gray-400">Accurate salary predictions powered by AI</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/Saptakcodes" class="text-gray-400 hover:text-white" target="_blank">
+                        <span class="sr-only">GitHub</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
+                <p class="text-base text-gray-400 text-center md:text-left">
+                    &copy; 2023 SalaryPredict Pro. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+<script>
+/********************
+ * DARK / LIGHT THEME
+ ********************/
+const root   = document.documentElement;
+const toggle = document.getElementById('modeToggle');
+const tooltip = document.createElement('span');
+tooltip.className = 'absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs px-2 py-1 rounded bg-gray-700 text-white opacity-0 transition-opacity';
+toggle.classList.add('relative');
+toggle.appendChild(tooltip);
+
+const sun    = document.getElementById('sunIcon');
+const moon   = document.getElementById('moonIcon');
+
+// initialise based on saved pref or OS scheme
+(function initTheme(){
+  const stored   = localStorage.getItem('theme');
+  const prefers  = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const darkMode = stored !== null ? stored === 'dark' : prefers;
+  applyTheme(darkMode);
+})();
+
+toggle.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
+
+function applyTheme(dark){
+  root.classList.toggle('dark', dark);
+  sun.classList.toggle('hidden', dark);
+  moon.classList.toggle('hidden', !dark);
+  document.body.classList.toggle('bg-gray-100', !dark);
+  document.body.classList.toggle('bg-gray-900',  dark);
+  localStorage.setItem('theme', dark ? 'dark' : 'light');
+  tooltip.textContent = dark ? 'Switch to light mode' : 'Switch to dark mode';
+  // rotate icon
+  toggle.animate([{transform:'rotate(0deg)'},{transform:'rotate(360deg)'}],{duration:500,iterations:1});
+}
+
+/********************
+ * SALARY PREDICTION
+ ********************/
+const form        = document.getElementById('salaryForm');
+const spinner     = document.getElementById('spinner');
+const resultBox   = document.getElementById('resultsSection');
+const salarySpan  = document.getElementById('predictedSalary');
+const confBar     = document.getElementById('confidenceBar');
+const confValue   = document.getElementById('confidenceValue');
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  spinner.classList.remove('hidden');
+  resultBox.classList.add('hidden');
+
+  const payload = Object.fromEntries(new FormData(form).entries());
+  try {
+    const res = await fetch('/predict',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(!res.ok) throw Error('Network');
+    const {salary, confidence} = await res.json();
+    displayResult(salary, confidence);
+  } catch(err){
+    alert('Prediction failed – please try again!');
+  } finally {
+    spinner.classList.add('hidden');
+  }
+});
+
+
+/********************
+ * UTILITIES
+ ********************/
+function animateScoreCircle(score){
+  const circle = document.getElementById('progressCircle');
+  const text   = document.getElementById('scoreText');
+  const R      = 45;
+  const C      = 2*Math.PI*R;
+  circle.style.strokeDasharray = C;
+  circle.style.strokeDashoffset = C;
+  const offset = C - score/100*C;
+  circle.animate([{strokeDashoffset:C},{strokeDashoffset:offset}],{duration:800,fill:'forwards',easing:'ease-out'});
+  // counting text
+  let current=0;
+  const step = score/30;
+  const counter = setInterval(()=>{
+    current+=step;
+    if(current>=score){clearInterval(counter);current=score;}
+    text.textContent = `${Math.floor(current)}%`;
+  },25);
+}
+
+function resetForm(){form.reset();resultBox.classList.add('hidden');form.scrollIntoView({behavior:'smooth'});} 
+function scrollToForm(){document.getElementById('predictionForm').scrollIntoView({behavior:'smooth'});} 
+
+/********************
+ * SCROLL ANIMATIONS
+ ********************/
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('animate__fadeInUp');observer.unobserve(e.target);}  
+  });
+},{threshold:0.2});
+
+document.querySelectorAll('.card').forEach(card=>observer.observe(card));
+</script>
+<script>
+(async function loadJobTitles() {
+  const sel = document.getElementById("jobTitle");
+  try {
+    const res  = await fetch("/job_titles");
+    const list = await res.json();            // array of strings
+    sel.innerHTML =
+      '<option value="">Select Job Title</option>' +
+      list.map(t => `<option value="${t}">${t}</option>`).join("");
+  } catch (err) {
+    sel.innerHTML = '<option value="">(failed to load titles)</option>';
+    console.error("Job title fetch error:", err);
+  }
+})();
+
+function displayResult(sal, conf) {
+  // existing lines …
+  salarySpan.textContent = sal.toLocaleString();
+  confValue.textContent = `${Math.round(conf * 100)}%`;
+  confBar.style.width   = `${Math.round(conf * 100)}%`;
+  animateScoreCircle(Math.round(conf * 100));
+
+  /* NEW — fill the summary cards */
+  document.getElementById('summaryAge').textContent        = form.age.value;
+  document.getElementById('summaryGender').textContent     = capitalize(form.gender.value);
+  document.getElementById('summaryEducation').textContent  = educationMap[form.education.value] || form.education.value;
+  document.getElementById('summaryJob').textContent        = form.jobTitle.value;
+  document.getElementById('summaryExperience').textContent = form.experience.value + ' yrs';
+
+  resultBox.classList.remove('hidden');
+  resultBox.scrollIntoView({ behavior: 'smooth' });
+}
+
+/* helpers */
+const educationMap = {
+  high_school : 'High School',
+  bachelor    : "Bachelor's",
+  master      : "Master's",
+  phd         : 'PhD'
+};
+function capitalize(str) { return str.charAt(0).toUpperCase() + str.slice(1); }
+
+</script>
+
+
+
+
+</body>
+</html>
