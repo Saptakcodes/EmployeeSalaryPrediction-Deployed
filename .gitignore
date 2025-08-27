@@ -1,0 +1,68 @@
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pyt
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+
+# pip cache
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Installer logs
+*.log
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# IDE / editor folders
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# MacOS / Windows system files
+.DS_Store
+Thumbs.db
+
+# Large binaries
+*.dll
+*.so
+*.dylib
+*.lib
+
+# Optional: data files (if any, depends on project)
+data/
+*.csv
+*.h5
+*.pt
+*.model
